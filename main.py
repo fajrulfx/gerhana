@@ -18,19 +18,30 @@ def process_row(row):
         total_eclipse = False
     else:
         total_eclipse = True
-    
-    if total_eclipse:
-        gerhana = 'Gerhana Matahari Total'
+
+    if kontak1 == '':
+        observer = False
     else:
-        gerhana = f'Gerhana Matahari Sebagian {magnitude}%'
+        observer = True
+    
+    if observer:
+        if total_eclipse:
+            gerhana = 'Gerhana Matahari Total'
+        else:
+            gerhana = f'Gerhana Matahari Sebagian {magnitude}%'
+    else:
+        gerhana = f'Tidak mengalami gerhana'
     
     if jam == '0':
         durasi = f'{menit} menit {detik} detik'
     else:
         durasi = f'{jam} jam {menit} menit {detik} detik'
 
-    content = f"{kota}: {gerhana}. Mulai {kontak1} {zone}, puncak {puncak} {zone}, selesai {kontak4} {zone}. Durasi {durasi}."
-    
+    if observer:
+        content = f"{kota}: {gerhana}. Mulai {kontak1} {zone}, puncak {puncak} {zone}, selesai {kontak4} {zone}. Durasi {durasi}."
+    else:
+        content = f"{kota}: {gerhana}."
+
     with open(f"api/{filename}.txt", "w") as f:
         f.write(content)
 
