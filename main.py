@@ -12,6 +12,7 @@ def process_row(row):
     menit = row['menit']
     detik = str(round(float(row['detik'])))
     magnitude = round(float(row['magnitude']) * 100)
+    zone = row['zone']
     
     if kontak2 == '' or kontak3 == '':
         total_eclipse = False
@@ -28,7 +29,7 @@ def process_row(row):
     else:
         durasi = f'{jam} jam {menit} menit {detik} detik'
 
-    content = f"{kota}: {gerhana}. Mulai {kontak1} WIB, puncak {puncak} WIB, selesai {kontak4} WIB. Durasi {durasi}."
+    content = f"{kota}: {gerhana}. Mulai {kontak1} {zone}, puncak {puncak} {zone}, selesai {kontak4} {zone}. Durasi {durasi}."
     
     with open(f"api/{filename}.txt", "w") as f:
         f.write(content)
