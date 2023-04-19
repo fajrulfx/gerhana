@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Solar Eclipse Data</title>
+  <script>
+    function fetchData(city) {
+      fetch(`./${city}.txt`)
+        .then(response => {
+          if (response.status === 404) {
+            return fetch('./notfound.txt');
+          }
+          return response;
+        })
+        .then(response => response.text())
+        .then(text => {
+          document.getElementById('data').innerText = text;
+        });
+    }
+  </script>
+</head>
+<body>
+  <p id="data"></p>
+  <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const city = urlParams.get('city');
+    if (city) {
+      fetchData(city);
+    }
+  </script>
+</body>
+</html>

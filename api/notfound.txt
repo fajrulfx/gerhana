@@ -1,0 +1,1 @@
+Data tidak ditemukan. Tulis nama kota dengan benar dan gunakan '_' jika nama kota terdiri dari beberapa kata. Contoh: !gerhana pontianak, !gerhana jakarta_pusat
